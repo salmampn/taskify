@@ -1,12 +1,12 @@
 import { signOut } from "@/app/login/actions";
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/utils/supabase/server";
+import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { LogIn, LogOut } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 
 export default async function Header() {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },

@@ -1,12 +1,12 @@
 'use server';
 
-import { createClient } from '@/utils/supabase/server'
+import { createSupabaseServerClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { Provider } from '@supabase/supabase-js'
 import { getURL } from '@/utils/helpers'
 
 export async function emailLogin(formData: FormData) {
-    const supabase = await createClient()
+    const supabase = await createSupabaseServerClient()
 
     // type-casting here for convenience
     // in practice, you should validate your inputs
@@ -26,7 +26,7 @@ export async function emailLogin(formData: FormData) {
 }
 
 export async function signOut() {
-    const supabase = await createClient();
+    const supabase = await createSupabaseServerClient();
     const { error } = await supabase.auth.signOut();
 
     if (error) {
@@ -42,7 +42,7 @@ export async function oAuthSignIn(provider: Provider) {
         return redirect('/login?message=No provider selected')
     }
 
-    const supabase = await createClient();
+    const supabase = await createSupabaseServerClient();
     const redirectUrl = getURL("/auth/callback")
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider,
