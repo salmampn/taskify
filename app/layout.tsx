@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({
   weight: "400",
@@ -21,8 +21,14 @@ export default function RootLayout({
   return (
     <html lang='en' className={poppins.className}>
       <body className='sticky top-0 bg-background text-foreground'>
-        <Header />
-        <main className='flex flex-col items-center'>{children}</main>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

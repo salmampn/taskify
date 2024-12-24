@@ -1,16 +1,30 @@
+import Header from "@/components/Header";
 import { CircleCheck } from "lucide-react";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect("/dashboard");
+  }
+
   return (
-    <section className='space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-64'>
-      <div className='container flex max-w-[64rem] flex-col items-center gap-4 text-center'>
+    <section>
+      <Header />
+      <div className='flex flex-col justify-center items-center p-64'>
         <div className='flex items-center gap-4'>
           <h1 className='text-balance font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl'>
             Welcome to Taskify!
           </h1>
           <CircleCheck className='w-20 h-20 text-primary' />
         </div>
-        <p className='max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8 opacity-70'>
+        <p className='opacity-70'>
           A task management app built with Next.js and Supabase
         </p>
       </div>

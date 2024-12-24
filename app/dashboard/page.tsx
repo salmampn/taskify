@@ -12,5 +12,9 @@ export default async function Tasks() {
     redirect("/login");
   }
 
-  return <div>Tasks</div>;
+  return (
+    <div>
+      <h1>Task</h1>
+    </div>
+  );
 }
