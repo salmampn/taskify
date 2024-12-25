@@ -1,12 +1,12 @@
 import { signOut } from "@/app/login/actions";
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/utils/supabase/server";
+import { createSupabaseServerClient } from "@/utils/supabase/server";
 import { LogIn, LogOut } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 
 export default async function Header() {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
@@ -14,7 +14,7 @@ export default async function Header() {
 
   return (
     <header className='z-10 sticky top-0 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
-      <div className='container flex h-16 w-full items-center px-8'>
+      <div className='flex h-16 w-full items-center px-8'>
         <nav className='flex items-center space-x-4 lg:space-x-6'>
           {user !== null ? (
             <div className='flex items-center space-x-2'>

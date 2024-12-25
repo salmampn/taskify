@@ -1,10 +1,10 @@
 import Header from "@/components/Header";
 import { CircleCheck } from "lucide-react";
 import { redirect } from "next/navigation";
-import { createClient } from "@/utils/supabase/server";
+import { createSupabaseServerClient } from "@/utils/supabase/server";
 
 export default async function Home() {
-  const supabase = await createClient();
+  const supabase = await createSupabaseServerClient();
 
   const {
     data: { user },
@@ -17,7 +17,7 @@ export default async function Home() {
   return (
     <section>
       <Header />
-      <div className='flex flex-col justify-center items-center p-64'>
+      <div className='flex flex-col justify-center items-center p-64 space-y-8'>
         <div className='flex items-center gap-4'>
           <h1 className='text-balance font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl'>
             Welcome to Taskify!

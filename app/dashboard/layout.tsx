@@ -1,11 +1,15 @@
-import FloatingBar from "@/components/FloatingBar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SideBar } from "./components/SideBar";
 
 function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div>
-      {children}
-      <FloatingBar />
-    </div>
+    <SidebarProvider>
+      <SideBar />
+      <main>
+        <SidebarTrigger />
+        <div className='px-12 py-4'>{children}</div>
+      </main>
+    </SidebarProvider>
   );
 }
 export default MainLayout;

@@ -15,9 +15,9 @@ import Header from "@/components/Header";
 
 export default async function SignUp() {
   return (
-    <section className='container'>
+    <section className=''>
       <Header />
-      <div className='flex justify-center items-center p-28'>
+      <div className='flex justify-center items-center p-36'>
         <Card className='mx-auto max-w-sm'>
           <CardHeader>
             <CardTitle className='text-2xl'>Sign up</CardTitle>
