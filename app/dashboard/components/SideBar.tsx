@@ -68,7 +68,7 @@ export async function SideBar() {
 
             <ModeToggle />
           </div>
-          <SidebarGroupContent className='mt-8'>
+          <SidebarGroupContent className='mt-4'>
             <SidebarMenu className='flex flex-col gap-4'>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
