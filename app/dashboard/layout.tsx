@@ -5,7 +5,7 @@ function MainLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <SidebarProvider>
       <SideBar />
-      <main>
+      <main className='w-full'>
         <SidebarTrigger />
         <div className='px-12 py-4'>{children}</div>
       </main>

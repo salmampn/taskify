@@ -12,21 +12,20 @@ export default async function Tasks() {
     redirect("/login");
   }
 
-  const { data: profile, error } = await supabase
-    .from("profiles")
+  const { data: account, error } = await supabase
+    .from("accounts")
     .select("name")
     .eq("id", user.id)
     .single();
 
   if (error) {
     console.error("Error fetching profile:", error);
-    return <div>Error loading profile</div>;
+    return <div className='text-4xl'>Error loading profile</div>;
   }
 
   return (
     <div>
-      <h1>Welcome Back, {profile.name}!</h1>
-      <p></p>
+      <h1 className='text-4xl'>Welcome Back, {account.name}!</h1>
     </div>
   );
 }
