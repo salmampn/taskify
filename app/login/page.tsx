@@ -8,16 +8,16 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
+// import Link from "next/link";
 import { emailLogin } from "./actions";
-import { OAuthButtons } from "@/components/oauth-signin";
+// import { OAuthButtons } from "@/components/oauth-signin";
 import Header from "@/components/Header";
 
 export default async function Login() {
   return (
-    <section className='container'>
+    <section className=''>
       <Header />
-      <div className='h-full flex justify-center items-center overflow-hidden p-28'>
+      <div className='h-full flex justify-center items-center overflow-hidden p-36'>
         <Card className='mx-auto max-w-sm'>
           <CardHeader>
             <CardTitle className='text-2xl'>Login</CardTitle>
@@ -52,14 +52,14 @@ export default async function Login() {
               <Button className='w-full' formAction={emailLogin}>
                 Login
               </Button>
-              <OAuthButtons />
+              {/* <OAuthButtons /> */}
             </form>
-            <div className='flex text-center text-sm items-center justify-center gap-1'>
+            {/* <div className='flex text-center text-sm items-center justify-center gap-1'>
               <p>Don&apos;t have an account?</p>
               <Link href='/signup' className='underline'>
                 Sign up
               </Link>
-            </div>
+            </div> */}
           </CardContent>
         </Card>
       </div>

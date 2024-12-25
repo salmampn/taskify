@@ -17,7 +17,7 @@ export default async function Home() {
   return (
     <section>
       <Header />
-      <div className='flex flex-col justify-center items-center p-64'>
+      <div className='flex flex-col justify-center items-center p-64 space-y-8'>
         <div className='flex items-center gap-4'>
           <h1 className='text-balance font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl'>
             Welcome to Taskify!

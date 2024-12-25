@@ -22,7 +22,7 @@ export async function emailLogin(formData: FormData) {
         redirect('/login?message=Could not authenticate user');
     }
 
-    redirect('/tasks')
+    redirect('/dashboard')
 }
 
 export async function signOut() {
