@@ -1,4 +1,8 @@
 function Task() {
-  return <div>Task</div>;
+  return (
+    <div>
+      <h1 className='text-4xl'>Tasks</h1>
+    </div>
+  );
 }
 export default Task;

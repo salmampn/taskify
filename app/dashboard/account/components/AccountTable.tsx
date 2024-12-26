@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import * as React from "react";
@@ -42,9 +43,14 @@ import { fetchAccounts } from "../actions/actions"; // Import the fetch function
 
 export type Account = {
   id: string;
-  name: string; // Assuming you have a name field
-  email: string;
-  role: "user" | "admin"; // Assuming you have a role field
+  name: string;
+  role: "user" | "admin";
+  accounts?: {
+    name: string;
+  };
+  // users?: {
+  //   email: string;
+  // };
 };
 
 export const columns: ColumnDef<Account>[] = [
@@ -73,41 +79,26 @@ export const columns: ColumnDef<Account>[] = [
   {
     accessorKey: "name",
     header: "Name",
-    cell: ({ row }) => <div>{row.getValue("name")}</div>,
+    cell: ({ row }) => {
+      // Ensure you're accessing the correct value for 'name' from the nested 'accounts' object
+      return <div>{row.original.accounts?.name || "No name"}</div>;
+    },
   },
   // {
   //   accessorKey: "email",
-  //   header: ({ column }) => {
-  //     return (
-  //       <Button
-  //         variant='ghost'
-  //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-  //       >
-  //         Email
-  //         <ArrowUpDown />
-  //       </Button>
-  //     );
-  //   },
-  //   cell: ({ row }) => <div className='lowercase'>{row.getValue("email")}</div>,
+  //   header: "Email", // New column for email
+  //   cell: ({ row }) => <div>{row.original.users?.email || "No email"}</div>,
   // },
   {
     accessorKey: "role",
     header: "Role",
-    cell: ({ row }) => <div className='capitalize'>{row.getValue("role")}</div>,
+    cell: ({ row }) => <div className='capitalize'>{row.original.role}</div>, // Ensure you're accessing 'role' directly
   },
-  // {
-  //   accessorKey: "status",
-  //   header: "Status",
-  //   cell: ({ row }) => (
-  //     <div className='capitalize'>{row.getValue("status")}</div>
-  //   ),
-  // },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
       const account = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -138,6 +129,7 @@ export function AccountTable() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
@@ -146,6 +138,7 @@ export function AccountTable() {
   React.useEffect(() => {
     const fetchData = async () => {
       const accounts = await fetchAccounts();
+      console.log("Accounts:", accounts);
       setData(accounts);
     };
     fetchData();
@@ -173,14 +166,14 @@ export function AccountTable() {
   return (
     <div className='w-full'>
       <div className='flex items-center justify-between py-4'>
-        <Input
+        {/* <Input
           placeholder='Filter name...'
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className='max-w-sm'
-        />
+        /> */}
         <DropdownMenu>
           <div className='flex items-center space-x-2'>
             <CreateAccount />
