@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 // import Link from "next/link";
 import { emailLogin } from "./actions";
-// import { OAuthButtons } from "@/components/oauth-signin";
+import { OAuthButtons } from "@/components/oauth-signin";
 import Header from "@/components/Header";
 
 export default async function Login() {
@@ -52,7 +52,7 @@ export default async function Login() {
               <Button className='w-full' formAction={emailLogin}>
                 Login
               </Button>
-              {/* <OAuthButtons /> */}
+              <OAuthButtons />
             </form>
             {/* <div className='flex text-center text-sm items-center justify-center gap-1'>
               <p>Don&apos;t have an account?</p>
